@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
-import { Private } from './pages/private/private';
 import { authGuard } from './auth/auth-guard';
+import { authChildGuard } from './auth/auth-child-guard';
+import { authMatchGuard } from './auth/auth-match-guard';
+import { privateChildRoutes } from './pages/private/private.routes';
 
 export const routes: Routes = [
   {
@@ -10,7 +12,9 @@ export const routes: Routes = [
   },
   {
     path: 'private',
-    component: Private,
     canActivate: [authGuard],
+    canActivateChild: [authChildGuard],
+    canMatch: [authMatchGuard],
+    children: privateChildRoutes,
   },
 ];

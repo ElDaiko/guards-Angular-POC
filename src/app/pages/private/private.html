@@ -1,2 +1,45 @@
 <h1>Ruta Privada (Protegida)</h1>
-<a [routerLink]="['/']">Volver al home</a>
+
+<div class="guard-info">
+  <h2>Guards Activos:</h2>
+  <ul>
+    <li>
+      <strong>canActivate:</strong> AuthGuard - Protege el acceso inicial a la
+      ruta
+    </li>
+    <li>
+      <strong>canActivateChild:</strong> AuthChildGuard - Protege el acceso a
+      rutas hijas
+    </li>
+    <li>
+      <strong>canMatch:</strong> AuthMatchGuard - Determina si esta
+      configuración de ruta debe ser considerada
+    </li>
+  </ul>
+</div>
+
+<div class="test-section">
+  <h2>🧪 Prueba canActivateChild:</h2>
+  <p>
+    Estas rutas hijas están protegidas por <strong>canActivateChild</strong>:
+  </p>
+  <div class="child-routes">
+    <a [routerLink]="['/private/settings']" class="child-link">
+      🔧 Ir a Settings (Ruta Hija)
+    </a>
+    <a [routerLink]="['/private/profile']" class="child-link">
+      👤 Ir a Profile (Ruta Hija)
+    </a>
+  </div>
+  <p class="instruction">
+    💡 <strong>Consejo:</strong> Abre la consola del navegador (F12) y navega a
+    estas rutas para ver cómo se ejecutan los guards en orden.
+  </p>
+</div>
+
+<!-- Aquí se mostrarán las rutas hijas -->
+<router-outlet></router-outlet>
+
+<div class="navigation">
+  <a [routerLink]="['/']" class="back-home">Volver al home</a>
+</div>
