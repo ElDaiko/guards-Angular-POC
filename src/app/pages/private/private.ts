@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-private',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './private.html',
-  styleUrl: './private.scss'
+  styleUrl: './private.scss',
 })
-export class Private {
-
-}
+export class Private {}
