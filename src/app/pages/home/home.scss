@@ -177,3 +177,298 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 }
+
+// Nuevos estilos para roles
+.role-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8rem;
+
+  &.admin {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  &.user {
+    background-color: #28a745;
+    color: white;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.role-button {
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e0a800;
+  }
+}
+
+// Estilos para la demostración de canMatch
+.canmatch-demo {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border: 2px solid #9c27b0;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+
+  .concept-explanation {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #9c27b0;
+
+    h3 {
+      color: #7b1fa2;
+      margin-top: 0;
+    }
+  }
+
+  .demo-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 1.5rem;
+
+    .route-configs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      .config {
+        border-radius: 8px;
+        padding: 1rem;
+
+        &.admin-config {
+          background-color: #ffebee;
+          border: 2px solid #f44336;
+        }
+
+        &.user-config {
+          background-color: #e8f5e8;
+          border: 2px solid #4caf50;
+        }
+
+        h4 {
+          margin-top: 0;
+        }
+
+        .code-snippet {
+          background-color: #263238;
+          color: #80cbc4;
+          padding: 0.75rem;
+          border-radius: 4px;
+          font-family: "Courier New", monospace;
+          font-size: 0.85rem;
+          overflow-x: auto;
+        }
+      }
+    }
+
+    .current-state {
+      background-color: #fff3e0;
+      border: 1px solid #ff9800;
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .test-area {
+      text-align: center;
+      margin-top: 1.5rem;
+
+      .dashboard-link {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      .prediction {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 6px;
+        font-weight: bold;
+
+        .no-access {
+          background-color: #ffcdd2;
+          color: #c62828;
+        }
+
+        .admin-access {
+          background-color: #ffcdd2;
+          color: #c62828;
+        }
+
+        .user-access {
+          background-color: #c8e6c9;
+          color: #2e7d32;
+        }
+      }
+    }
+  }
+}
+
+// Estilos para la explicación completa
+.canmatch-explanation {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border: 2px solid #667eea;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 3rem 0;
+
+  .comparison-table {
+    margin: 2rem 0;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      th {
+        background-color: #667eea;
+        color: white;
+        padding: 1rem;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e0e6ed;
+
+        &:first-child {
+          font-weight: bold;
+          background-color: #f8f9fa;
+        }
+      }
+
+      tr:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+    }
+  }
+
+  .scenarios {
+    margin: 2rem 0;
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+
+      .scenario {
+        background-color: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #667eea;
+
+        h4 {
+          color: #667eea;
+          margin-top: 0;
+        }
+
+        code {
+          background-color: #f1f3f4;
+          padding: 0.25rem 0.5rem;
+          border-radius: 3px;
+          font-family: "Courier New", monospace;
+          font-size: 0.9rem;
+          display: block;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .flow-diagram {
+    margin: 2rem 0;
+
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+
+      .step {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+
+        .step-number {
+          background-color: #667eea;
+          color: white;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          margin-right: 1rem;
+          flex-shrink: 0;
+        }
+
+        .step-content {
+          flex: 1;
+
+          h4 {
+            margin: 0 0 0.5rem 0;
+            color: #667eea;
+          }
+
+          p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+          }
+        }
+      }
+
+      .arrow {
+        font-size: 1.5rem;
+        color: #667eea;
+        font-weight: bold;
+      }
+    }
+  }
+}

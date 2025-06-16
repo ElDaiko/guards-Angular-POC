@@ -15,7 +15,27 @@ export class Home {
     return this.authService.isLoggedIn();
   }
 
+  get userRole(): string {
+    return this.authService.getRole();
+  }
+
+  get isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  get isUser(): boolean {
+    return this.authService.isUser();
+  }
+
   toggleAuth(): void {
     this.authService.toggleAuth();
+    // Si se autentica, por defecto le damos rol 'user'
+    if (this.authService.isLoggedIn()) {
+      this.authService.setRole('user');
+    }
+  }
+
+  toggleRole(): void {
+    this.authService.toggleRole();
   }
 }

@@ -3,16 +3,87 @@
 <div class="auth-controls">
   <div class="auth-status">
     <p>
-      Estado de autenticación:
+      Estado:
       <span [class]="isLoggedIn ? 'logged-in' : 'logged-out'">
         {{ isLoggedIn ? 'Autenticado' : 'No autenticado' }}
       </span>
+      @if (isLoggedIn) { | Rol:
+      <span class="role-badge" [class.admin]="isAdmin" [class.user]="isUser">
+        {{ userRole.toUpperCase() }}
+      </span>
+      }
     </p>
   </div>
 
-  <button (click)="toggleAuth()" class="auth-button">
-    {{ isLoggedIn ? 'Cerrar Sesión' : 'Iniciar Sesión' }}
-  </button>
+  <div class="button-group">
+    <button (click)="toggleAuth()" class="auth-button">
+      {{ isLoggedIn ? 'Cerrar Sesión' : 'Iniciar Sesión' }}
+    </button>
+
+    @if (isLoggedIn) {
+    <button (click)="toggleRole()" class="role-button">
+      Cambiar a {{ isAdmin ? 'USER' : 'ADMIN' }}
+    </button>
+    }
+  </div>
+</div>
+
+<!-- 🌟 NUEVA SECCIÓN PARA DEMOSTRAR canMatch 🌟 -->
+<div class="canmatch-demo">
+  <div class="demo-section">
+    <div class="route-configs">
+      <div class="config admin-config">
+        <h4>🔴 Configuración 1 (Solo ADMIN)</h4>
+        <div class="code-snippet">
+          <code>
+            {{'{'}} path: 'dashboard', component: AdminPanel, canMatch:
+            [adminMatchGuard] {{'}'}}
+          </code>
+        </div>
+      </div>
+
+      <div class="config user-config">
+        <h4>🔵 Configuración 2 (Solo USER)</h4>
+        <div class="code-snippet">
+          <code>
+            {{'{'}} path: 'dashboard', component: UserDashboard, canMatch:
+            [userMatchGuard] {{'}'}}
+          </code>
+        </div>
+      </div>
+    </div>
+
+    <div class="current-state">
+      <p><strong>Tu estado actual:</strong></p>
+      <ul>
+        <li>Autenticado: {{ isLoggedIn ? '✅ Sí' : '❌ No' }}</li>
+        <li>Rol: {{ isLoggedIn ? userRole.toUpperCase() : 'NINGUNO' }}</li>
+      </ul>
+    </div>
+
+    <div class="test-area">
+      <h4>🚀 Haz la prueba:</h4>
+      <a [routerLink]="['/dashboard']" class="dashboard-link">
+        🎯 Ir a /dashboard
+      </a>
+
+      <div class="prediction">
+        @if (!isLoggedIn) {
+        <p class="no-access">
+          ❌ Ninguna configuración será considerada (no autenticado)
+        </p>
+        } @else if (isAdmin) {
+        <p class="admin-access">
+          🔴 Se usará la configuración de ADMIN → AdminPanel
+        </p>
+        } @else if (isUser) {
+        <p class="user-access">
+          🔵 Se usará la configuración de USER → UserDashboard
+        </p>
+        }
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="test-instructions">
@@ -48,35 +119,4 @@
       Los guards deberían bloquear el acceso antes de llegar a la ruta hija' }}
     </p>
   </div>
-
-  <div class="console-tip">
-    <h3>📋 Abre la Consola (F12):</h3>
-    <p>
-      Para ver la ejecución de los guards en tiempo real, abre la consola del
-      navegador donde verás logs como:
-    </p>
-    <div class="console-example">
-      <div class="log">🔍 [CANMATCH] AuthMatchGuard ejecutándose...</div>
-      <div class="log">🔐 [CANACTIVATE] AuthGuard ejecutándose...</div>
-      <div class="log">
-        👶 [CANACTIVATECHILD] AuthChildGuard ejecutándose...
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="navigation">
-  <h2>🚀 Orden de Ejecución:</h2>
-  <p>Los guards se ejecutan en este orden específico:</p>
-  <ol class="execution-order">
-    <li>
-      <strong>canMatch:</strong> Determina si la configuración de ruta debe ser
-      considerada
-    </li>
-    <li><strong>canActivate:</strong> Valida el acceso a la ruta padre</li>
-    <li>
-      <strong>canActivateChild:</strong> Valida el acceso a rutas hijas (solo si
-      existe)
-    </li>
-  </ol>
 </div>
